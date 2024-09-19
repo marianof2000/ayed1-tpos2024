@@ -1,0 +1,6 @@
+*/
+*.*
+!.gitignore
+!repos.csv
+!repos.py
+!README.md
