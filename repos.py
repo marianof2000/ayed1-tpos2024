@@ -18,7 +18,8 @@ def leer(archivo: str) -> List[List[str]]:
 def clonar_repos(lista: List[List[str]]) -> None:
     """Clona a disco todos los repos de los alumnos"""
     for repo in lista:
-        os.system(f"git clone {repo[2]} {''.join(repo[1].title().split())}")
+        #print(f"git clone {repo[1]}.git {repo[0]}")
+        os.system(f"git clone {repo[1]}.git {repo[0]}")
 
 
 def actualizar_repos(ruta: str) -> None:
