@@ -18,7 +18,7 @@ def leer(archivo: str) -> List[List[str]]:
 def clonar_repos(lista: List[List[str]]) -> None:
     """Clona a disco todos los repos de los alumnos"""
     for repo in lista:
-        #print(f"git clone {repo[1]}.git {repo[0]}")
+        # print(f"git clone {repo[1]}.git {repo[0]}")
         os.system(f"git clone {repo[1]}.git {repo[0]}")
 
 
@@ -26,7 +26,6 @@ def actualizar_repos(ruta: str) -> None:
     """Recorre todos los repos de los alumnos y busca actualizaciones"""
     repos = [
         os.path.join(ruta, d)
-        
         for d in os.listdir(ruta)
         if (os.path.isdir(os.path.join(ruta, d)) and not d.startswith("."))
     ]
