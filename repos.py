@@ -1,15 +1,22 @@
 """Librería de SO"""
 
 import os
+import datetime
 from typing import List
 
-def logged(function):
+
+def logged(func):
+    """Decorador para agregar entradas al registro de eventos"""
+
     def wrapper(*args, **kwargs):
-        value = function(*args, **kwargs)
-        with open("logfile.txt", "a") as f:
-            fname = function.__name__
-            print(f"{fname} returned value {value}")
-            f.write(f"{fname} returned value {value}\n")
+        timestamp = datetime.now().strftime("%Y-%m-%d|%H:%M:%S")
+        value = func(*args, **kwargs)
+        log_file = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "logfile.txt"
+        )
+        with open(log_file, "a", encoding="utf-8") as f:
+            fname = func.__name__
+            f.write(f"{timestamp}:{fname} -> {value}\n")
         return value
 
     return wrapper
@@ -25,12 +32,13 @@ def leer(archivo: str) -> List[List[str]]:
         print(e)
     return datos
 
+
 @logged
 def clonar_repos(lista: List[List[str]]) -> None:
     """Clona a disco todos los repos de los alumnos"""
     for repo in lista:
-        # print(f"git clone {repo[1]}.git {repo[0]}")
         os.system(f"git clone {repo[1]}.git {repo[0]}")
+
 
 @logged
 def actualizar_repos(ruta: str) -> None:
