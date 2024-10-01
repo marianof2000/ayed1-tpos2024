@@ -1,7 +1,7 @@
 """Librería de SO"""
 
 import os
-import datetime
+from datetime import datetime
 from typing import List
 
 
